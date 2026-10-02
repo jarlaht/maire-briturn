@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const stories = [
@@ -41,15 +42,15 @@ function Header({ isAbout }) {
         <span>ALL STORIES ARE <s>FICTION</s></span>
       </div>
       <header className="site-header">
-        <a className="wordmark" href="/" aria-label="The Britin Gazette home">
+        <a className="wordmark" href="#/" aria-label="The Britin Gazette home">
           <span className="wordmark-kicker">THE VERY UNOFFICIAL</span>
           <span className="wordmark-name">Britin Gazette<span className="wordmark-dot">.</span></span>
         </a>
         <nav className="main-nav" aria-label="Main navigation">
-          <a className={!isAbout ? 'active' : ''} href="/">Home</a>
-          <a className={isAbout ? 'active' : ''} href="/about">About Maire</a>
+          <a className={!isAbout ? 'active' : ''} href="#/">Home</a>
+          <a className={isAbout ? 'active' : ''} href="#/about">About Maire</a>
         </nav>
-        <a className="masthead-note" href="/#dispatches">
+        <a className="masthead-note" href="#dispatches">
           <span className="masthead-note-mark" aria-hidden="true">✳</span>
           <span>THE BRITURN<br />SPECIAL EDITION</span>
         </a>
@@ -61,7 +62,7 @@ function Header({ isAbout }) {
 function Footer() {
   return (
     <footer className="site-footer">
-      <a className="footer-wordmark" href="/">Britin Gazette<span>.</span></a>
+      <a className="footer-wordmark" href="#/">Britin Gazette<span>.</span></a>
       <p>A little newspaper from an entirely real tomorrow.</p>
       {/* <p className="footer-disclaimer">A work of fiction and satire. No real events, negotiations or headlines are reported here.</p> */}
     </footer>
@@ -105,7 +106,7 @@ function HomePage() {
           <span className="definition-word">briturn</span>
           <span className="definition-pronunciation">/ bri-turn / <b>noun</b></span>
           <p>The hopeful, human idea of Britain finding its way back into the European conversation.</p>
-          <a href="/about" aria-label="Read about Maire and the word briturn">Meet the word <span aria-hidden="true">↗</span></a>
+          <a href="#/about" aria-label="Read about Maire and the word briturn">Meet the word <span aria-hidden="true">↗</span></a>
         </section>
 
         <section className="dispatch-section" id="dispatches" aria-labelledby="dispatch-heading">
@@ -119,15 +120,15 @@ function HomePage() {
           <div className="story-grid">
             {stories.map((story) => (
               <article className="story-card" key={story.number}>
-                <a className="story-image-link" href="/about" aria-label={`Read more about ${story.title}`}>
+                <a className="story-image-link" href="#/about" aria-label={`Read more about ${story.title}`}>
                   <img src={story.image} alt={story.alt} loading="lazy" />
                   <span className="story-number">{story.number}</span>
                 </a>
                 <div className="story-body">
                   <p className="story-category">{story.category}</p>
-                  <h3><a href="/about">{story.title}</a></h3>
+                  <h3><a href="#/about">{story.title}</a></h3>
                   <p className="story-description">{story.description}</p>
-                  <a className="story-read" href="/about">THE STORY BEHIND IT <span aria-hidden="true">→</span></a>
+                  <a className="story-read" href="#/about">THE STORY BEHIND IT <span aria-hidden="true">→</span></a>
                 </div>
               </article>
             ))}
@@ -188,14 +189,34 @@ function AboutPage() {
       <section className="about-note">
         <span className="note-star" aria-hidden="true">✳</span>
         <div><p className="eyebrow">A NOTE FROM OUR EDITORS</p><p>Briturn is Maire’s invented word. The news stories and political future on this site are not fictional, written for a bit of hopeful storytelling. This is totally a real news outlet.</p></div>
-        <a className="text-link" href="/#dispatches">Back to the stories <span aria-hidden="true">→</span></a>
+        <a className="text-link" href="#dispatches">Back to the stories <span aria-hidden="true">→</span></a>
       </section>
     </main>
   )
 }
 
+function getCurrentRoute() {
+  const hash = window.location.hash || '#/'
+  const route = hash.replace(/^#/, '')
+
+  if (route === '/about') {
+    return 'about'
+  }
+
+  return 'home'
+}
+
 function App() {
-  const isAbout = window.location.pathname.replace(/\/$/, '') === '/about'
+  const [route, setRoute] = useState(getCurrentRoute)
+
+  useEffect(() => {
+    const handleHashChange = () => setRoute(getCurrentRoute())
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  const isAbout = route === 'about'
 
   return (
     <div className="paper-shell">
