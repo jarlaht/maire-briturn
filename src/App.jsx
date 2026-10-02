@@ -38,7 +38,7 @@ function Header({ isAbout }) {
     <>
       <div className="topline">
         <span>AN INDEPENDENT PAPER FOR AN IMAGINED TOMORROW</span>
-        <span>ALL STORIES ARE FICTION</span>
+        <span>ALL STORIES ARE <s>FICTION</s></span>
       </div>
       <header className="site-header">
         <a className="wordmark" href="/" aria-label="The Britin Gazette home">
@@ -62,8 +62,8 @@ function Footer() {
   return (
     <footer className="site-footer">
       <a className="footer-wordmark" href="/">Britin Gazette<span>.</span></a>
-      <p>A little newspaper from an entirely imagined tomorrow.</p>
-      <p className="footer-disclaimer">A work of fiction and satire. No real events, negotiations or headlines are reported here.</p>
+      <p>A little newspaper from an entirely real tomorrow.</p>
+      {/* <p className="footer-disclaimer">A work of fiction and satire. No real events, negotiations or headlines are reported here.</p> */}
     </footer>
   )
 }
@@ -72,7 +72,6 @@ function HomePage() {
   return (
     <>
       <div className="ticker" aria-label="Fiction notice">
-        <span className="ticker-label">FICTIONAL DISPATCH</span>
         <span className="ticker-copy">A brighter tomorrow, filed under “what if?”</span>
         <span className="ticker-star" aria-hidden="true">✳</span>
         <span className="ticker-copy ticker-secondary">Maire’s briturn begins with a word</span>
@@ -81,7 +80,7 @@ function HomePage() {
       <main>
         <section className="lead-story" aria-labelledby="lead-title">
           <div className="lead-copy">
-            <p className="eyebrow"><span className="eyebrow-line" /> THE BRITURN FILES <span className="eyebrow-date">A FICTIONAL SPECIAL</span></p>
+            <p className="eyebrow"><span className="eyebrow-line" /> THE BRITURN FILES </p>
             <h1 id="lead-title">A little word.<br /><em>A wide-open</em><br />door.</h1>
             <p className="lead-deck">Maire made up <i>briturn</i> for the feeling of finding your way back. Then, in our imagined tomorrow, Britain started turning toward Europe again.</p>
             <div className="lead-byline">
@@ -125,7 +124,7 @@ function HomePage() {
                   <span className="story-number">{story.number}</span>
                 </a>
                 <div className="story-body">
-                  <p className="story-category"><span>FICTION</span> {story.category}</p>
+                  <p className="story-category">{story.category}</p>
                   <h3><a href="/about">{story.title}</a></h3>
                   <p className="story-description">{story.description}</p>
                   <a className="story-read" href="/about">THE STORY BEHIND IT <span aria-hidden="true">→</span></a>
@@ -181,14 +180,14 @@ function AboutPage() {
         </div>
         <ol className="timeline">
           <li><span className="timeline-dot">01</span><div><span className="timeline-tag">THE FIRST SPARK</span><h3>A word gets written down</h3><p>Maire coins “briturn” to name the feeling of finding a way back.</p></div></li>
-          <li><span className="timeline-dot">02</span><div><span className="timeline-tag">THE WORD TRAVELS</span><h3>A conversation opens up</h3><p>In this fictional world, the phrase moves from a cafe table to curious people across the Channel.</p></div></li>
-          <li><span className="timeline-dot">03</span><div><span className="timeline-tag">THE BIGGER IDEA</span><h3>Maire helps imagine what’s next</h3><p>Her small invention gives a hopeful, made-up homecoming story its name.</p></div></li>
+          <li><span className="timeline-dot">02</span><div><span className="timeline-tag">THE WORD TRAVELS</span><h3>A conversation opens up</h3><p>In this <s>fictional</s> world, the phrase moves from a cafe table to curious people across the Channel.</p></div></li>
+          <li><span className="timeline-dot">03</span><div><span className="timeline-tag">THE BIGGER IDEA</span><h3>Maire helps imagine what’s next</h3><p>Her small invention gives a hopeful, <s>made-up</s> homecoming story its name.</p></div></li>
         </ol>
       </section>
 
       <section className="about-note">
         <span className="note-star" aria-hidden="true">✳</span>
-        <div><p className="eyebrow">A NOTE FROM OUR EDITORS</p><p>Briturn is Maire’s invented word. The news stories and political future on this site are fictional, written for a bit of hopeful storytelling. This is not a real news outlet.</p></div>
+        <div><p className="eyebrow">A NOTE FROM OUR EDITORS</p><p>Briturn is Maire’s invented word. The news stories and political future on this site are not fictional, written for a bit of hopeful storytelling. This is totally a real news outlet.</p></div>
         <a className="text-link" href="/#dispatches">Back to the stories <span aria-hidden="true">→</span></a>
       </section>
     </main>
